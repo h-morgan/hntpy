@@ -50,19 +50,91 @@ class HeliumClient:
 
         return resp.json()
 
-    def get_account_data(self, wallet_id: str, suffix: str = None, params: dict = {}) -> dict:
+    def get_account_data(
+        self, wallet_id: str, suffix: str = None, params: dict = {}
+    ) -> dict:
 
-        url = self.URL_ACCOUNTS_BASE + f"/{wallet_id}"
+        next_cursor = None
+        data = []
+        while True:
 
-        if suffix:
-            url = url + f"/{suffix}"
+            url = self.URL_ACCOUNTS_BASE + f"/{wallet_id}"
 
-        # make request, raise exceptions if they come up
-        logger.debug(f"[{self.service_name}] accounts request URL: {url}")
-        logger.debug(f"[{self.service_name}] accounts request params: {params}")
-        resp = self._session.get(url, headers=self.HEADERS, params=params)
-        resp.raise_for_status()
+            if suffix:
+                url = url + f"/{suffix}"
 
-        logger.debug(f"[{self.service_name}] response status code: {resp.status_code}")
+            if next_cursor:
+                url = "?".join([url, f"cursor={next_cursor}"])
 
-        return resp.json()
+            # make request, raise exceptions if they come up
+            logger.debug(f"[{self.service_name}] accounts request URL: {url}")
+            logger.debug(f"[{self.service_name}] accounts request params: {params}")
+            resp = self._session.get(url, headers=self.HEADERS, params=params)
+            resp.raise_for_status()
+
+            logger.debug(
+                f"[{self.service_name}] response status code: {resp.status_code}"
+            )
+
+            # opt to return just the data from the response, where possible
+            resp_data = resp.json()["data"]
+            logger.debug(
+                f"[{self.service_name}] retrieved {len(resp_data)} results from API"
+            )
+
+            if isinstance(resp_data, list):
+                data.extend(resp_data)
+
+                if "cursor" in resp.json():
+                    next_cursor = resp.json()["cursor"]
+                    logger.debug(
+                        f"[{self.service_name}] Next page cursor: {next_cursor}"
+                    )
+                else:
+                    break
+
+            # if we got a dict back, there is no cursor (paginated data returned in lists)
+            else:
+                return resp_data
+
+        return data
+
+    def get_account_gen(
+        self, wallet_id: str, suffix: str = None, params: dict = {}
+    ) -> dict:
+
+        next_cursor = None
+        while True:
+
+            url = self.URL_ACCOUNTS_BASE + f"/{wallet_id}"
+
+            if suffix:
+                url = url + f"/{suffix}"
+
+            if next_cursor:
+                url = "?".join([url, f"cursor={next_cursor}"])
+
+            # make request, raise exceptions if they come up
+            logger.debug(f"[{self.service_name}] accounts request URL: {url}")
+            logger.debug(f"[{self.service_name}] accounts request params: {params}")
+            resp = self._session.get(url, headers=self.HEADERS, params=params)
+            resp.raise_for_status()
+
+            logger.debug(
+                f"[{self.service_name}] response status code: {resp.status_code}"
+            )
+
+            # opt to return just the data from the response, where possible
+            resp_data = resp.json()["data"]
+            logger.debug(
+                f"[{self.service_name}] retrieved {len(resp_data)} results from API"
+            )
+
+            yield resp_data
+
+            # update cursor for next page of results
+            if "cursor" in resp.json():
+                next_cursor = resp.json()["cursor"]
+                logger.debug(f"[{self.service_name}] Next page cursor: {next_cursor}")
+            else:
+                break
