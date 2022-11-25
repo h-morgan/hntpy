@@ -1,2 +1,5 @@
 dist/*
 *.egg-info
+*.pytest_cache
+dev/sandbox.py
+*.coverage
