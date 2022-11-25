@@ -59,3 +59,7 @@ class Account:
         else:
             data = self.client.get_account_data(self.account_id, suffix="roles")
         return data
+
+    def role_counts(self) -> dict:
+        data = self.client.get_account_data(self.account_id, suffix="roles/count")
+        return data

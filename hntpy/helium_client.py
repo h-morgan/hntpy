@@ -37,19 +37,6 @@ class HeliumClient:
         self.URL_ORACLE_BASE = urljoin(self.base_url, "oracle/prices")
         self.URL_VALIDATORS_BASE = urljoin(self.base_url, "validators")
 
-    def get_accounts(self, url_suffix: str) -> dict:
-
-        url = self.base_url + f"/{url_suffix}"
-
-        # make request, raise exceptions if they come up
-        resp = self._session.get(url, headers=self.HEADERS)
-        logger.debug(f"[{self.service_name}] accounts request URL: {url}")
-        resp.raise_for_status()
-
-        logger.debug(f"[{self.service_name}] response status code: {resp.status_code}")
-
-        return resp.json()
-
     def get_account_data(
         self, wallet_id: str, suffix: str = None, params: dict = {}
     ) -> dict:
@@ -78,8 +65,12 @@ class HeliumClient:
 
             # opt to return just the data from the response, where possible
             resp_data = resp.json()["data"]
+            if isinstance(resp_data, list):
+                num_items = len(resp_data)
+            else:
+                num_items = 1
             logger.debug(
-                f"[{self.service_name}] retrieved {len(resp_data)} results from API"
+                f"[{self.service_name}] retrieved {num_items} results from API"
             )
 
             if isinstance(resp_data, list):
