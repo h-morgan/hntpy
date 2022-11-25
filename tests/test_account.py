@@ -63,7 +63,7 @@ def test_get_ouis():
     assert isinstance(details, list)
 
     # get generator
-    gen = account.roles(gen=True)
+    gen = account.ouis(gen=True)
     assert isinstance(gen, GeneratorType)
 
 
@@ -72,3 +72,15 @@ def test_get_roles():
     details = account.roles()
 
     assert isinstance(details, list)
+
+    # get generator
+    gen = account.roles(gen=True)
+    assert isinstance(gen, GeneratorType)
+
+
+def test_role_counts():
+    account = Account(account_id="13d5xg6qzdE2sVtep6GtbYtJ3fPCvxwpjMWSD4L7hBtSVrrjfZR")
+    details = account.role_counts()
+
+    assert isinstance(details, dict)
+    assert "add_gateway_v1" in details
