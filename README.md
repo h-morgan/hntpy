@@ -36,7 +36,7 @@ The `Account` module allows you to interact with/get data about your Helium acco
 To instantiate an Account instance for your Helium account:
 
 ```python
-from hntpy import Accounts
+from hntpy import Account
 
 # pass your 51-digit Helium account/wallet address
 account = Account("your-helium-account-addr-here")
