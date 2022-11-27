@@ -125,3 +125,70 @@ class BaseAddrResource:
         data = self.client.get_data(url, params=params)
 
         return data
+
+    def elections(
+        self,
+        min_time: str = None,
+        max_time: str = None,
+        limit: int = None,
+        gen: bool = False,
+    ) -> Union[list, GeneratorType]:
+        """Fetches all electionss that the address (single hotspot or all hotspots for an account) was involved in
+
+        Args:
+            min_time (optional): First time to include data for
+            max_time (optional): Last time to include data for (exclusive)
+            limit (optional): 	Maximum number of items to return
+            gen (optional): if True, yield results with a generator. if false, return a list
+
+        """
+        url = self.base_url + f"/{self.address}/elections"
+
+        params = {}
+        if max_time:
+            params["max_time"] = max_time
+        if min_time:
+            params["min_time"] = min_time
+        if limit:
+            params["limit"] = limit
+
+        if gen:
+            data = self.client.gen_data(url, params=params)
+        else:
+            data = self.client.get_data(url, params=params)
+
+        return data
+
+    def challenges(
+        self,
+        min_time: str = None,
+        max_time: str = None,
+        limit: int = None,
+        gen: bool = False,
+    ) -> Union[list, GeneratorType]:
+        """Fetches all challenges that the address (single hotspot or all hotspots for an account)
+        was a challenger, challengee, or witness in.
+
+        Args:
+            min_time (optional): First time to include data for
+            max_time (optional): Last time to include data for (exclusive)
+            limit (optional): 	Maximum number of items to return
+            gen (optional): if True, yield results with a generator. if false, return a list
+
+        """
+        url = self.base_url + f"/{self.address}/challenges"
+
+        params = {}
+        if max_time:
+            params["max_time"] = max_time
+        if min_time:
+            params["min_time"] = min_time
+        if limit:
+            params["limit"] = limit
+
+        if gen:
+            data = self.client.gen_data(url, params=params)
+        else:
+            data = self.client.get_data(url, params=params)
+
+        return data

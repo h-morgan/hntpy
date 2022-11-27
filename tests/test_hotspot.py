@@ -91,3 +91,59 @@ def test_reward_totals():
 
     assert isinstance(resp, list)
     assert len(resp) > 0
+
+
+def test_elections():
+    hotspot = Hotspot(TEST_HOTSPOT_ID)
+    data = hotspot.elections(limit=10, min_time="2021-01-01", max_time="2021-01-05")
+
+    assert isinstance(data, list)
+    assert len(data) <= 10
+
+    # check if the generator works
+    gen = hotspot.elections(
+        limit=10, min_time="2021-01-01", max_time="2021-01-05", gen=True
+    )
+    assert isinstance(gen, GeneratorType)
+
+
+def test_challenges():
+    hotspot = Hotspot(TEST_HOTSPOT_ID)
+    data = hotspot.challenges(limit=10, min_time="2021-01-01", max_time="2021-01-05")
+
+    assert isinstance(data, list)
+    assert len(data) <= 10
+
+    # check if the generator works
+    gen = hotspot.challenges(
+        limit=10, min_time="2021-01-01", max_time="2021-01-05", gen=True
+    )
+    assert isinstance(gen, GeneratorType)
+
+
+def test_witnesses():
+    hotspot = Hotspot(TEST_HOTSPOT_ID)
+    data = hotspot.witnesses()
+
+    assert isinstance(data, list)
+    assert len(data) > 0
+
+    # look at one of the items to make sure it's what we expect
+    d = data[0]
+    assert "status" in d
+    assert "payer" in d
+    assert "owner" in d
+
+
+def test_witnessed():
+    hotspot = Hotspot(TEST_HOTSPOT_ID)
+    data = hotspot.witnessed()
+
+    assert isinstance(data, list)
+    assert len(data) > 0
+
+    # look at one of the items to make sure it's what we expect
+    d = data[0]
+    assert "status" in d
+    assert "payer" in d
+    assert "owner" in d
