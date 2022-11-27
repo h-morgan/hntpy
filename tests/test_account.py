@@ -31,6 +31,7 @@ def test_get_hotspots():
     details = account.hotspots()
 
     assert isinstance(details, list)
+    assert len(details) > 0
 
 
 def test_get_hotspots_with_filter():
@@ -39,12 +40,12 @@ def test_get_hotspots_with_filter():
 
     # test a valid filter
     filter_mode = "dataonly"
-    details = account.hotspots(filter_mode=filter_mode)
+    details = account.hotspots(filter_modes=filter_mode)
     assert isinstance(details, list)
 
     # test invalid filter
     filter_mode = "bad"
-    details = account.hotspots(filter_mode=filter_mode)
+    details = account.hotspots(filter_modes=filter_mode)
 
     assert isinstance(details, list)
 
@@ -84,3 +85,39 @@ def test_role_counts():
 
     assert isinstance(details, dict)
     assert "add_gateway_v1" in details
+
+    # test that filter types works
+    resp = account.role_counts(filter_types="token_burn_v1")
+    assert "token_burn_v1" in resp
+    assert len(resp) == 1
+
+
+def test_rewards():
+    account = Account(account_id="13d5xg6qzdE2sVtep6GtbYtJ3fPCvxwpjMWSD4L7hBtSVrrjfZR")
+
+    resp = account.rewards(min_time="2021-11-20", max_time="2021-11-21")
+    assert isinstance(resp, list)
+
+    # get a reward, ensure it's on the day we requested
+    reward = resp[0]
+    reward_time = reward["timestamp"]
+    assert "2021-11-20" in reward_time
+
+    # test generator
+    resp2 = account.rewards(min_time="2021-11-20", max_time="2021-11-21", gen=True)
+    assert isinstance(resp2, GeneratorType)
+
+
+def test_reward_totals():
+    account = Account(account_id="13d5xg6qzdE2sVtep6GtbYtJ3fPCvxwpjMWSD4L7hBtSVrrjfZR")
+    resp = account.rewards_sum(min_time="2021-11-20", max_time="2021-11-21")
+
+    assert isinstance(resp, dict)
+    assert "sum" in resp
+
+    resp = account.rewards_sum(
+        min_time="2022-01-20", max_time="2022-06-21", bucket="week"
+    )
+
+    assert isinstance(resp, list)
+    assert len(resp) > 0
