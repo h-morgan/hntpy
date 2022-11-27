@@ -2,7 +2,7 @@
 
 <p align="left">
     <a alt="Version" href="https://pypi.org/project/hntpy/">
-    <img src="https://img.shields.io/badge/version-0.7.0-blue"/></a>
+    <img src="https://img.shields.io/badge/version-0.0.7-blue"/></a>
     <a href="https://github.com/h-morgan/hntpy/blob/main/LICENSE" alt="License">
     <img src="https://img.shields.io/github/license/h-morgan/hntpy"/></a>
     <img src="https://img.shields.io/badge/coverage-99%25-green"/>

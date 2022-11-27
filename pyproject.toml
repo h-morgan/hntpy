@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "hntpy"
-version = "0.0.6"
+version = "0.0.7"
 description = "Python wrapper for Helium API to simplify interactions with the Helium blockchain."
 authors = ["Haley Morgan <haleymorgan3264@gmail.com>"]
 license = "MIT"
