@@ -121,3 +121,13 @@ def test_reward_totals():
 
     assert isinstance(resp, list)
     assert len(resp) > 0
+
+
+def test_get_stats():
+    account = Account(account_id="13d5xg6qzdE2sVtep6GtbYtJ3fPCvxwpjMWSD4L7hBtSVrrjfZR")
+    data = account.stats()
+
+    assert isinstance(data, dict)
+    assert "last_week" in data
+    assert "last_month" in data
+    assert "last_day" in data

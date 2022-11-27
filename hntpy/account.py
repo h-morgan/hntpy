@@ -129,3 +129,9 @@ class Account:
         data = self.client.get_data(url, params=params)
 
         return data
+
+    def stats(self) -> dict:
+        """Fetches account statistics for a given account. This currently includes account balance information (in bones) for the last month (daily), last week (every 8 hours), and daily (hourly)."""
+        url = self.base_url + f"/{self.account_id}/stats"
+        data = self.client.get_data(url)
+        return data
