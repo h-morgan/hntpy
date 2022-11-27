@@ -6,18 +6,32 @@ This is the documentation and usage instructions for the `hntpy` Python package.
 
 `hntpy` is a Python package created to enable easy interaction with the Helium API. For further information about the Helium API, including information about requests and responses, view their [API documentation](https://docs.helium.com/api/blockchain/introduction).
 
-To use this module, you need to import the parts you intend to use into your Python file. So far, we have the following modules that can be imported/used to make requests:
+To use this module, you need to import it in full, or it's part you intend to use into your Python file. So far, we have the following modules that can be imported/used to make requests:
 
 - `Account`
 - `Hotspot`
 
-An example of importing both of these would look like:
+To import this whole package, add this to the top of your Python file:
 
 ```python
-from hntpy import Account, Hotspot
+import hntpy
 ```
+
+## Contents
 
 For specific information and more comprehensive examples of using these modules, see their respective documentation pages:
 
-- [`Account` docs]
-- [`Hotspot` docs]
+- [Account module docs](https://github.com/h-morgan/hntpy/blob/main/docs/account.md)
+- [Hotspot module docs](https://github.com/h-morgan/hntpy/blob/main/docs/hotspot.md)
+
+## Return types
+
+The Helium API returns either JSON objects (loaded as `dicts`) of data, or `lists` of data. All of the functions in the `hntpy` package that make requests to the Helium API return either:
+
+- `list`
+- `dict`
+- `GeneratorType`
+
+For requests that have the potential to return large amounts of data, have the option to provide a `gen=True` argument to the method, which will yield the data in batches (rather than compile and return one single large list). By default, `gen` parameter is set to `False` for all methods.
+
+To see return types for specific methods, see the respective module's documentation page.
