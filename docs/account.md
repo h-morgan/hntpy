@@ -1,7 +1,5 @@
 # The Account module
 
-To se
-
 ## Introduction
 
 This module sets up an `Account` object to make requests on behalf of a given Helium account address. This allows you to interact with/get data about your Helium account in a Pythonic way. The methods on this module, their naming, and their responses align with the [official Helium Accounts API](https://docs.helium.com/api/blockchain/accounts).
@@ -11,10 +9,6 @@ To import it into your file:
 ```python
 from hntpy import Account
 ```
-
-## Blockchain data note
-
-Depending on the amount of data these requests have to return, you may need to wait a bit while the requests complete. In instances where there are many pages of data being returned from the Helium API, these requests can sometimes take minutes if a generator is not used.
 
 ## Instantiating the Account object
 

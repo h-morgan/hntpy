@@ -17,7 +17,7 @@ To import this whole package, add this to the top of your Python file:
 import hntpy
 ```
 
-## Contents
+## Module Documentation
 
 For specific information and more comprehensive examples of using these modules, see their respective documentation pages:
 
@@ -35,3 +35,7 @@ The Helium API returns either JSON objects (loaded as `dicts`) of data, or `list
 For requests that have the potential to return large amounts of data, there is the option to provide a `gen=True` argument to the method, which will yield the data in batches (rather than compile and return one single large list). By default, `gen` parameter is set to `False` for all methods.
 
 To see available return types for specific methods, see method definitions in the respective module's documentation page.
+
+## Blockchain data note
+
+Depending on the amount of data these requests have to return, you may need to wait a bit while the requests complete. In instances where there are many pages of data being returned from the Helium API, these requests can sometimes take minutes if a generator is not used.
