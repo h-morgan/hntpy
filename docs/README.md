@@ -6,20 +6,11 @@ This is the documentation and usage instructions for the `hntpy` Python package.
 
 `hntpy` is a Python package created to enable easy interaction with the Helium API. For further information about the Helium API, including information about requests and responses, view their [API documentation](https://docs.helium.com/api/blockchain/introduction).
 
-To use this module, you need to import it in full, or it's part you intend to use into your Python file. So far, we have the following modules that can be imported/used to make requests:
-
-- `Account`
-- `Hotspot`
-
-To import this whole package, add this to the top of your Python file:
-
-```python
-import hntpy
-```
+This package is continually being developed. Documentation will be updated as new functionality becomes available.
 
 ## Module Documentation
 
-For specific information and more comprehensive examples of using these modules, see their respective documentation pages:
+For specific information and more comprehensive examples of using the modules within `hntpy`, see their respective pages:
 
 - [Account module docs](https://github.com/h-morgan/hntpy/blob/main/docs/account.md)
 - [Hotspot module docs](https://github.com/h-morgan/hntpy/blob/main/docs/hotspot.md)
