@@ -7,12 +7,12 @@ TEST_HOTSPOT_ID = "11Z6K426LMUow2Jyvf7MdP7js9qsdt7Kp9D9koxg9xoJSMLTy1y"
 def test_hotspot_id():
     hotspot_id = "1234"
     hotspot = Hotspot(hotspot_id)
-    assert hotspot.hotspot_id == hotspot_id
+    assert hotspot.address == hotspot_id
 
 
 def test_get_hotspot_details():
     hotspot = Hotspot(TEST_HOTSPOT_ID)
-    data = hotspot.get_hotspot_details()
+    data = hotspot.get_details()
 
     assert isinstance(data, dict)
 
@@ -22,7 +22,7 @@ def test_get_hotspot_details():
     assert "owner" in data
 
 
-def test_get_hotspot_activity():
+def test_get_hotspot_roles():
     hotspot = Hotspot(TEST_HOTSPOT_ID)
     data = hotspot.roles(limit=10)
 
@@ -45,3 +45,49 @@ def test_get_hotspot_activity():
     # we know this is the time for the first reward on this day, so check that it's working
     reward_time = reward["time"]
     assert reward_time == 1667336306
+
+
+def test_hotspot_role_counts():
+    hotspot = Hotspot(TEST_HOTSPOT_ID)
+    data = hotspot.role_counts()
+
+    assert isinstance(data, dict)
+    assert "rewards_v2" in data
+
+    # test filtering
+    data = hotspot.role_counts(filter_types="add_gateway_v1,oui_v1")
+    assert isinstance(data, dict)
+    assert "add_gateway_v1" in data
+    assert "oui_v1" in data
+    assert "coinbase_v1" not in data
+
+
+def test_rewards():
+    hotspot = Hotspot(TEST_HOTSPOT_ID)
+
+    resp = hotspot.rewards(min_time="2021-11-20", max_time="2021-11-21")
+    assert isinstance(resp, list)
+
+    # get a reward, ensure it's on the day we requested
+    reward = resp[0]
+    reward_time = reward["timestamp"]
+    assert "2021-11-20" in reward_time
+
+    # test generator
+    resp2 = hotspot.rewards(min_time="2021-11-20", max_time="2021-11-21", gen=True)
+    assert isinstance(resp2, GeneratorType)
+
+
+def test_reward_totals():
+    hotspot = Hotspot(TEST_HOTSPOT_ID)
+    resp = hotspot.rewards_sum(min_time="2021-11-20", max_time="2021-11-21")
+
+    assert isinstance(resp, dict)
+    assert "sum" in resp
+
+    resp = hotspot.rewards_sum(
+        min_time="2022-01-20", max_time="2022-06-21", bucket="week"
+    )
+
+    assert isinstance(resp, list)
+    assert len(resp) > 0
