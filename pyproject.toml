@@ -7,6 +7,8 @@ license = "MIT"
 readme = "README.md"
 homepage = "https://github.com/h-morgan/hntpy"
 documentation = "https://github.com/h-morgan/hntpy/tree/main/docs"
+repository = "https://github.com/h-morgan/hntpy"
+keywords = ["helium", "crypto", "hnt"]
 
 [tool.poetry.scripts]
 sandbox = 'hntpy.sandbox:sandbox'
