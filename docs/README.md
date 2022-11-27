@@ -1,6 +1,6 @@
 # hntpy Documentation
 
-This is the documentation and usage instructions for the `hntpy` Python package. If you need to install it or view package information, head over to the official package page on [PyPI](https://pypi.org/project/hntpy/#description).
+This is the documentation and usage instructions for the `hntpy` Python package. If you need to install it or view package information, head over to the official package page on [PyPI](https://pypi.org/project/hntpy/).
 
 ## Introduction
 
