@@ -13,6 +13,8 @@
 
 Python wrapper for Helium API to simplify interaction with Helium blockchain. The aim of this project is to enable retrieval of Helium data from the API in a Pythonic way.
 
+For comprehensive documentation (with examples), review the full usage docs on [Github](https://github.com/h-morgan/hntpy/tree/main/docs).
+
 For more detail on exact API responses/data, please see the officical [Helium documentation](https://docs.helium.com/api/blockchain/introduction).
 
 This project is continually under development. If you notice a bug, or have a feature request, please submit a Github issue [here](https://github.com/h-morgan/hntpy/issues).
