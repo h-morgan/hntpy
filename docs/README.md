@@ -32,6 +32,6 @@ The Helium API returns either JSON objects (loaded as `dicts`) of data, or `list
 - `dict`
 - `GeneratorType`
 
-For requests that have the potential to return large amounts of data, have the option to provide a `gen=True` argument to the method, which will yield the data in batches (rather than compile and return one single large list). By default, `gen` parameter is set to `False` for all methods.
+For requests that have the potential to return large amounts of data, there is the option to provide a `gen=True` argument to the method, which will yield the data in batches (rather than compile and return one single large list). By default, `gen` parameter is set to `False` for all methods.
 
-To see return types for specific methods, see the respective module's documentation page.
+To see available return types for specific methods, see method definitions in the respective module's documentation page.
