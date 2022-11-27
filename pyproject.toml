@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "hntpy"
-version = "0.0.5"
+version = "0.0.6"
 description = "Python wrapper for Helium API to simplify interactions with the Helium blockchain."
 authors = ["Haley Morgan <haleymorgan3264@gmail.com>"]
 license = "MIT"
@@ -8,7 +8,7 @@ readme = "README.md"
 homepage = "https://github.com/h-morgan/hntpy"
 documentation = "https://github.com/h-morgan/hntpy/tree/main/docs"
 repository = "https://github.com/h-morgan/hntpy"
-keywords = ["helium", "crypto", "hnt"]
+keywords = ["helium", "crypto", "hnt", "blockchain"]
 
 [tool.poetry.scripts]
 sandbox = 'hntpy.sandbox:sandbox'

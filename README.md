@@ -1,11 +1,11 @@
 # hntpy
 
 <p align="left">
-    <a alt="Version">
+    <a alt="Version" href="https://pypi.org/project/hntpy/">
     <img src="https://img.shields.io/badge/version-0.0.6-blue"/></a>
     <a href="https://github.com/h-morgan/hntpy/blob/main/LICENSE" alt="License">
     <img src="https://img.shields.io/github/license/h-morgan/hntpy"/></a>
-    <a alt="Coverage">
+    <a alt="Coverage" href="#">
     <img src="https://img.shields.io/badge/coverage-92%25-green"/></a>
 </p>
 
