@@ -11,7 +11,9 @@
 
 ## Introduction
 
-Python wrapper for Helium API to simplify interaction with Helium blockchain. The aim of this project is to enable retrieval of Helium data from the API in a Pythonic way.
+hntpy is a Python wrapper for Helium API to simplify requests and interaction with Helium blockchain. The aim of this project is to enable retrieval of Helium data from the API in a Pythonic way.
+
+For comprehensive documentation (with examples), review the full usage docs on [Github](https://github.com/h-morgan/hntpy/tree/main/docs).
 
 For more detail on exact API responses/data, please see the officical [Helium documentation](https://docs.helium.com/api/blockchain/introduction).
 
@@ -25,7 +27,9 @@ To use the latest version of this Python package, download from PyPi:
 pip install hntpy
 ```
 
-## Usage
+## Example Usage
+
+See complete documentation and more examples [here](https://github.com/h-morgan/hntpy/tree/main/docs).
 
 ### The Account module
 
@@ -36,7 +40,7 @@ The `Account` module allows you to interact with/get data about your Helium acco
 To instantiate an Account instance for your Helium account:
 
 ```python
-from hntpy import Accounts
+from hntpy import Account
 
 # pass your 51-digit Helium account/wallet address
 account = Account("your-helium-account-addr-here")

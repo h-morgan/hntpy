@@ -9,7 +9,7 @@ from urllib.parse import urljoin
 
 class HeliumClient:
     """
-    Client that sets up connection to Helium API
+    Base client that sets up connection to Helium API
     """
 
     service_name = "HELIUM API"
@@ -19,9 +19,10 @@ class HeliumClient:
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36"  # This is another valid field
     }
 
-    def __init__(self, base_url: str = "https://api.helium.io/v1/"):
-        self.base_url = base_url or os.getenv("HELIUM_API_URL")
+    def __init__(self, api_url: str = "https://api.helium.io/v1/"):
+        self.api_url = api_url or os.getenv("HELIUM_API_URL")
 
+        # setup request session
         session = requests.Session()
         retry = Retry(
             total=25, backoff_factor=1, status_forcelist=(500, 502, 503, 504, 429)
@@ -32,26 +33,22 @@ class HeliumClient:
         session.mount("https://", adapter)
         self._session = session
 
-        self.URL_ACCOUNTS_BASE = urljoin(self.base_url, "accounts")
-        self.URL_HOTSPOTS_BASE = urljoin(self.base_url, "hotspots")
-        self.URL_ORACLE_BASE = urljoin(self.base_url, "oracle/prices")
-        self.URL_VALIDATORS_BASE = urljoin(self.base_url, "validators")
+        # keep these stored in case we want to perform requesuts using them no matter what instance
+        self.URL_ACCOUNTS_BASE = urljoin(self.api_url, "accounts")
+        self.URL_HOTSPOTS_BASE = urljoin(self.api_url, "hotspots")
+        self.URL_ORACLE_BASE = urljoin(self.api_url, "oracle/prices")
+        self.URL_VALIDATORS_BASE = urljoin(self.api_url, "validators")
 
-    def get_account_data(
-        self, wallet_id: str, suffix: str = None, params: dict = {}
-    ) -> dict:
+    def get_data(self, endpoint, params: dict = {}) -> dict:
 
         next_cursor = None
         data = []
         while True:
 
-            url = self.URL_ACCOUNTS_BASE + f"/{wallet_id}"
-
-            if suffix:
-                url = url + f"/{suffix}"
+            url = self.api_url + f"{endpoint}"
 
             if next_cursor:
-                url = "?".join([url, f"cursor={next_cursor}"])
+                params["cursor"] = next_cursor
 
             # make request, raise exceptions if they come up
             logger.debug(f"[{self.service_name}] accounts request URL: {url}")
@@ -90,20 +87,15 @@ class HeliumClient:
 
         return data
 
-    def get_account_gen(
-        self, wallet_id: str, suffix: str = None, params: dict = {}
-    ) -> dict:
+    def gen_data(self, endpoint, params: dict = {}) -> dict:
 
         next_cursor = None
         while True:
 
-            url = self.URL_ACCOUNTS_BASE + f"/{wallet_id}"
-
-            if suffix:
-                url = url + f"/{suffix}"
+            url = self.api_url + f"{endpoint}"
 
             if next_cursor:
-                url = "?".join([url, f"cursor={next_cursor}"])
+                params["cursor"] = next_cursor
 
             # make request, raise exceptions if they come up
             logger.debug(f"[{self.service_name}] accounts request URL: {url}")

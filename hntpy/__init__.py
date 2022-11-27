@@ -1,4 +1,5 @@
-from hntpy.account import Account
+from hntpy.resources.account import Account
+from hntpy.resources.hotspot import Hotspot
 from loguru import logger
 import sys
 
