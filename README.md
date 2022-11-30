@@ -43,7 +43,7 @@ account = Account(address="51-character-account-address")
 validators = account.validators()
 hotspots = account.hotspots()
 
-# get a generator of rewards, in a given timewindow, for an account (optionally can also return a list)
+# get a generator of rewards, in a given time window, for an account (optionally can also return a list)
 rewards_generator = account.rewards(min_time="2022-01-01", max_time="2022-06-01", gen=True)
 
 for batch in rewards_generator:
