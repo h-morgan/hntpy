@@ -14,6 +14,7 @@ For specific information and more comprehensive examples of using the modules wi
 
 - [Account module docs](https://github.com/h-morgan/hntpy/blob/main/docs/account.md)
 - [Hotspot module docs](https://github.com/h-morgan/hntpy/blob/main/docs/hotspot.md)
+- [Validator module docs](https://github.com/h-morgan/hntpy/blob/main/docs/validator.md)
 
 ## Return types
 

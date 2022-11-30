@@ -32,6 +32,8 @@ details = hotspot.get_details()
 
 The `details` variable is now a python `dict` containing a `dict` of the hotspot details, as returned from the Helium API.
 
+**Note:** All of the following sections assume an instantiation of a `Hotspot` object, stored in a variable named `hotspot`.
+
 ## Get roles (activity) for a hotspot
 
 Lists all blockchain transactions that the given Hotspot was involved in.
