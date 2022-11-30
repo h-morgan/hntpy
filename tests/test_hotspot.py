@@ -5,9 +5,8 @@ TEST_HOTSPOT_ID = "11Z6K426LMUow2Jyvf7MdP7js9qsdt7Kp9D9koxg9xoJSMLTy1y"
 
 
 def test_hotspot_id():
-    hotspot_id = "1234"
-    hotspot = Hotspot(hotspot_id)
-    assert hotspot.address == hotspot_id
+    hotspot = Hotspot(TEST_HOTSPOT_ID)
+    assert hotspot.address == TEST_HOTSPOT_ID
 
 
 def test_get_hotspot_details():
