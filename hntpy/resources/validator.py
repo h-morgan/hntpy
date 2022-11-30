@@ -1,7 +1,5 @@
 from hntpy.helium_client import HeliumClient
 from hntpy.resources.base import BaseAddrResource
-from typing import Union
-from types import GeneratorType
 
 
 class Validator(BaseAddrResource):
