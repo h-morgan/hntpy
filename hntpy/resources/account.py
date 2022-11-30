@@ -10,6 +10,7 @@ class Account(BaseAddrResource):
 
     def __init__(self, address: str):
         self.address = address
+        self.validate_addr()
 
     def hotspots(self, filter_modes: str = None) -> list:
         """Get a list of hotspots and their details for the account
