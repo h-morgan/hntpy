@@ -17,7 +17,7 @@ class BaseAddrResource:
         url = self.base_url + f"/{self.address}"
         return self.client.get_data(url)
 
-    def validate_addr(self) -> bool:
+    def validate_addr(self) -> None:
         if len(self.address) != 51:
             raise ResourceAddressError()
 
