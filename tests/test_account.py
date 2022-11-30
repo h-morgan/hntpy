@@ -1,5 +1,13 @@
 from hntpy import Account
 from types import GeneratorType
+from hntpy.resources.base import ResourceAddressError
+import pytest
+
+
+def test_addr_validation():
+    invalid_addr = "1234"
+    with pytest.raises(ResourceAddressError):
+        Account(invalid_addr)
 
 
 def test_account_details():
@@ -57,13 +65,13 @@ def test_get_ouis():
 
 
 def test_get_roles():
-    account = Account(address="1d5xg6qzdE2sVtep6GtbYtJ3fPCvxwpjMWSD4L7hBtSVrrjfZR")
-    details = account.roles()
+    account = Account(address="13d5xg6qzdE2sVtep6GtbYtJ3fPCvxwpjMWSD4L7hBtSVrrjfZR")
+    details = account.roles(limit=10)
 
     assert isinstance(details, list)
 
     # get generator
-    gen = account.roles(gen=True)
+    gen = account.roles(gen=True, limit=10)
     assert isinstance(gen, GeneratorType)
 
 

@@ -32,6 +32,8 @@ details = account.get_details()
 
 The `details` variable is now a python `dict` containing your account details from the Helium API.
 
+**Note:** All of the following sections assume an instantiation of an `Account` object, stored in a variable named `account`.
+
 ## Get hotspots for an account
 
 To get a list of hotspots, and their data, for your account:

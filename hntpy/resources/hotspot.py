@@ -11,6 +11,7 @@ class Hotspot(BaseAddrResource):
 
     def __init__(self, address: str):
         self.address = address
+        self.validate_addr()
 
     def witnesses(self) -> dict:
         """Retrieves the list of witnesses for a given hotspot over about the last 5 days of blocks"""

@@ -2,7 +2,7 @@
 
 <p align="left">
     <a alt="Version" href="https://pypi.org/project/hntpy/">
-    <img src="https://img.shields.io/badge/version-0.0.7-blue"/></a>
+    <img src="https://img.shields.io/badge/version-0.0.8-blue"/></a>
     <a href="https://github.com/h-morgan/hntpy/blob/main/LICENSE" alt="License">
     <img src="https://img.shields.io/github/license/h-morgan/hntpy"/></a>
     <a href="#">
@@ -13,7 +13,7 @@
 
 hntpy is a Python wrapper for Helium API to simplify requests and interaction with Helium blockchain. The aim of this project is to enable retrieval of Helium data from the API in a Pythonic way.
 
-For comprehensive documentation (with examples), review the full usage docs on [Github](https://github.com/h-morgan/hntpy/tree/main/docs).
+For comprehensive documentation (with examples), review the full usage [docs](https://github.com/h-morgan/hntpy/tree/main/docs).
 
 For more detail on exact API responses/data, please see the officical [Helium documentation](https://docs.helium.com/api/blockchain/introduction).
 
@@ -29,32 +29,51 @@ pip install hntpy
 
 ## Example Usage
 
-These are just a couple of examples to show how the `hntpy` package can be used. For comprehensive documentation, including all function definitions, argument examples, and more, view the [Github docs](https://github.com/h-morgan/hntpy/tree/main/docs).
+Below are a couple of examples to show how the `hntpy` package can be used. For comprehensive documentation, including all function definitions, argument examples, and more, view the [full docs](https://github.com/h-morgan/hntpy/tree/main/docs).
 
 ```python
-from hntpy import Account, Hotspot
+from hntpy import Account, Hotspot, Validator
 
-# account functions
+# ===================================
 
+## sample account functionality
 account = Account(address="51-character-account-address")
 
+# get validators and hotspots associated with an account
 validators = account.validators()
 hotspots = account.hotspots()
 
+# get a generator of rewards, in a given timewindow, for an account (optionally can also return a list)
 rewards_generator = account.rewards(min_time="2022-01-01", max_time="2022-06-01", gen=True)
 
 for batch in rewards_generator:
     for reward in batch:
         # do some processing with the reward here...
 
+# ===================================
 
-# hotspot functions
+## sample hotspot functionality
 
 hotspot = Hotspot(address="51-character-hotspot-address")
 
+# get roles (activity) for a hotspot, can optionally provide timeframe and response limit
 roles = hotspot.roles(min_time="2022-01-01", limit=100)
 
+# get the total reward sum for the hotspot, optionally in a given timeframe
+rewards = hotspot.rewards(min_time="2022-01-01", max_time="2022-06-01")
+
+# get hotspots that the given hotspot witnessed over the last 5 days
 witnessed = hotspot.witnessed()
+
+# ===================================
+
+## sample validator functionality
+
+validator = Validator(address="51-character-validator-address")
+
+# get roles (activity) for a hotspot, can optionally provide timeframe and response limit
+roles = validator.roles(limit=200)
+
 ```
 
 ## Return types

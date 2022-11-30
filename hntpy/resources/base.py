@@ -4,7 +4,7 @@ from types import GeneratorType
 
 
 class BaseAddrResource:
-    """Abstract resource class to be inherited by concrete resources to setup functionality
+    """Abstract resource class to be inherited by concrete resources that have IDs to setup functionality
     for requests to the Helium API that require an address (accounts, hotspots, validators, etc.).
 
     These share a lot of the same methods, with the difference being the ID and a portion of the request endpoint
@@ -16,6 +16,10 @@ class BaseAddrResource:
     def get_details(self) -> dict:
         url = self.base_url + f"/{self.address}"
         return self.client.get_data(url)
+
+    def validate_addr(self) -> None:
+        if len(self.address) != 51:
+            raise ResourceAddressError()
 
     def roles(
         self,
@@ -192,3 +196,10 @@ class BaseAddrResource:
             data = self.client.get_data(url, params=params)
 
         return data
+
+
+class ResourceAddressError(Exception):
+    def __init__(self, message=None):
+        if message is None:
+            message = "Address is invalid - please provide a valid 51 character Helium resource address."
+        super().__init__(message)
