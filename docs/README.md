@@ -8,13 +8,14 @@ This is the documentation and usage instructions for the `hntpy` Python package.
 
 This package is continually being developed. Documentation will be updated as new functionality becomes available.
 
-## Module Documentation
+## Contents
 
-For specific information and more comprehensive examples of using the modules within `hntpy`, see their respective pages:
+For specific information and more comprehensive examples of using the functions and modules within `hntpy`, see their respective pages:
 
-- [Account module docs](https://github.com/h-morgan/hntpy/blob/main/docs/account.md)
-- [Hotspot module docs](https://github.com/h-morgan/hntpy/blob/main/docs/hotspot.md)
-- [Validator module docs](https://github.com/h-morgan/hntpy/blob/main/docs/validator.md)
+- [Retrieving Helium network data](https://github.com/h-morgan/hntpy/blob/main/docs/general.md)
+- [Account module](https://github.com/h-morgan/hntpy/blob/main/docs/account.md)
+- [Hotspot module](https://github.com/h-morgan/hntpy/blob/main/docs/hotspot.md)
+- [Validator module](https://github.com/h-morgan/hntpy/blob/main/docs/validator.md)
 
 ## Return types
 
