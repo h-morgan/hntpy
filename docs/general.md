@@ -4,6 +4,7 @@
 
 - [0. Introduction](#0-introduction)
 - [1. Stats](#1-stats)
+- [2. Oracle prices](#2-oracle-prices)
 
 ## 0. Introduction
 
@@ -40,3 +41,53 @@ supply = hntpy.get_token_supply()
 Optionally, you can pass the following argument to specify return type:
 
 - `format` (str): either "JSON" or "raw" (for a raw number). Defaults to JSON.
+
+<hr>
+
+## 2. Oracle prices
+
+### Current oracle price
+
+The current Oracle Price and at which block it took effect.
+
+```python
+data = hntpy.current_oracle_price()
+```
+
+### Current and historic oracle prices
+
+Retrieve list of the current and historical Oracle Prices and at which block they took effect.
+
+**Note:** this method supports generator return type.
+
+```python
+data = list_oracle_prices()
+```
+
+Optionally, you can pass the following arguments:
+
+- `max_block` (int): Last block number to include in the results.
+- `gen` (bool): defaults to `False`, set to `True` if you want the response to be a generator.
+
+### Oracle price stats
+
+Gets statistics on Oracle prices.
+
+```python
+data = oracle_price_stats(min_time= "2022-06-01", max_time="2022-07-01")
+```
+
+Where `min_time` and `max_time` are both required.
+
+- `min_time` (str): date format of "YYYY-mm-dd", lower time bound (inclusive)
+- `max_time` (str): date format of "YYYY-mm-dd", upper time bound (exclusive)
+
+### Oracle price at specific block
+
+Provides the oracle price at a specific block and at which block it initially took effect.
+
+```python
+data = oracle_price_at_block(block_num=471570)
+```
+
+Where `block_num` is a required argument.
