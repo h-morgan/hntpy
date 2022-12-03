@@ -12,6 +12,7 @@ class BaseAddrResource:
 
     client = HeliumClient()
     address = None
+    base_url = None
 
     def get_details(self) -> dict:
         url = self.base_url + f"/{self.address}"

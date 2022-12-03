@@ -1,5 +1,4 @@
 from hntpy.helium_client import HeliumClient
-from typing import Union
 from hntpy.resources.base import BaseAddrResource
 
 

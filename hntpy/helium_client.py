@@ -61,7 +61,13 @@ class HeliumClient:
             )
 
             # opt to return just the data from the response, where possible
-            resp_data = resp.json()["data"]
+            try:
+                resp_data = resp.json()["data"]
+            # in the case where the response is not a JSON body, just return the text
+            except TypeError:
+                resp_data = resp.text
+
+            # do some stuff to log number of items in response
             if isinstance(resp_data, list):
                 num_items = len(resp_data)
             else:
