@@ -86,3 +86,9 @@ def list_oracle_activity(
         data = client.get_data(url, params=params)
 
     return data
+
+
+def predict_oracle_price() -> list:
+    """This returns a list of expected times when the Oracle Price is expected to change."""
+    url = BASE_URL + "/predictions"
+    return client.get_data(url)

@@ -55,3 +55,10 @@ def test_list_oracle_activity():
         for d in batch:
             assert d["type"] == "price_oracle_v1"
             assert "time" in d
+
+
+def test_predict_oracle_price():
+    data = hnt.predict_oracle_price()
+    assert isinstance(data, list)
+    assert "time" in data[0]
+    assert "price" in data[0]

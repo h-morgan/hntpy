@@ -5,4 +5,5 @@ from hntpy.network.oracle import (
     oracle_price_stats,
     oracle_price_at_block,
     list_oracle_activity,
+    predict_oracle_price,
 )

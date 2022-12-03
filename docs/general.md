@@ -94,7 +94,7 @@ Where `block_num` is a required argument.
 
 ### List Oracle activity
 
-List oracle price report transactions for all oracle keys.
+List Oracle price report transactions for all Oracle keys.
 
 ```python
 data = hntpy.list_oracle_activity()
@@ -106,3 +106,11 @@ Optionally, you can pass the following arguments:
 - `max_time` (str): date format of "YYYY-mm-dd", upper time bound (exclusive)
 - `limit` (int): maximum number of items to return
 - `gen` (bool): defaults to `False`, set to `True` if you want the response to be a generator
+
+### Get predicted HNT Oracle prices
+
+This returns a list of expected times when the Oracle Price is expected to change.
+
+```python
+data = hntpy.predict_oracle_price()
+```
