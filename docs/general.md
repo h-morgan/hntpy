@@ -46,7 +46,7 @@ Optionally, you can pass the following argument to specify return type:
 
 ## 2. Oracle prices
 
-### Current oracle price
+### Current Oracle price
 
 The current Oracle Price and at which block it took effect.
 
@@ -54,14 +54,14 @@ The current Oracle Price and at which block it took effect.
 data = hntpy.current_oracle_price()
 ```
 
-### Current and historic oracle prices
+### Current and historic Oracle prices
 
 Retrieve list of the current and historical Oracle Prices and at which block they took effect.
 
 **Note:** this method supports generator return type.
 
 ```python
-data = list_oracle_prices()
+data = hntpy.list_oracle_prices()
 ```
 
 Optionally, you can pass the following arguments:
@@ -74,7 +74,7 @@ Optionally, you can pass the following arguments:
 Gets statistics on Oracle prices.
 
 ```python
-data = oracle_price_stats(min_time= "2022-06-01", max_time="2022-07-01")
+data = hntpy.oracle_price_stats(min_time="2022-06-01", max_time="2022-07-01")
 ```
 
 Where `min_time` and `max_time` are both required.
@@ -84,10 +84,25 @@ Where `min_time` and `max_time` are both required.
 
 ### Oracle price at specific block
 
-Provides the oracle price at a specific block and at which block it initially took effect.
+Provides the Oracle price at a specific block and at which block it initially took effect.
 
 ```python
-data = oracle_price_at_block(block_num=471570)
+data = hntpy.oracle_price_at_block(block_num=471570)
 ```
 
 Where `block_num` is a required argument.
+
+### List Oracle activity
+
+List oracle price report transactions for all oracle keys.
+
+```python
+data = hntpy.list_oracle_activity()
+```
+
+Optionally, you can pass the following arguments:
+
+- `min_time` (str): date format of "YYYY-mm-dd", lower time bound (inclusive)
+- `max_time` (str): date format of "YYYY-mm-dd", upper time bound (exclusive)
+- `limit` (int): maximum number of items to return
+- `gen` (bool): defaults to `False`, set to `True` if you want the response to be a generator

@@ -56,3 +56,33 @@ def oracle_price_at_block(block_num: int) -> dict:
     """
     url = PRICE_URL + f"/{block_num}"
     return client.get_data(url)
+
+
+def list_oracle_activity(
+    min_time: str = None, max_time: str = None, limit: int = None, gen: bool = False
+) -> Union[list, GeneratorType]:
+    """List oracle price report transactions for all oracle keys.
+
+    Args:
+        min_time (optional): (YYYY-mm-dd) First time to include data for
+        max_time (optional): (YYYY-mm-dd) Last time to include data for (exclusive)
+        limit (optional): 	Maximum number of items to return
+        gen (optional): if True, yield results with a generator. if false, return a list
+
+    """
+    url = BASE_URL + f"/activity"
+
+    params = {}
+    if max_time:
+        params["max_time"] = max_time
+    if min_time:
+        params["min_time"] = min_time
+    if limit:
+        params["limit"] = limit
+
+    if gen:
+        data = client.gen_data(url, params=params)
+    else:
+        data = client.get_data(url, params=params)
+
+    return data
